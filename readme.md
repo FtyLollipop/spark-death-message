@@ -7,7 +7,8 @@
 ## 安装
 
 1. 安装LiteLoaderBDS并安装SparkBridge
-2. 解压`death.message`文件夹到`plugins\nodejs\sparkbridge\plugins`目录中。
+2. [下载death.message.zip](https://github.com/FtyLollipop/spark-death-message/releases)
+3. 解压`death.message`文件夹到`plugins\nodejs\sparkbridge\plugins`目录中。
 
 ## 配置
 
