@@ -1,7 +1,7 @@
-let entityData = (new JsonConfigFile('plugins/sparkbridge/death.message/config/entity.json')).get("entity")
-let messageData = (new JsonConfigFile('plugins/sparkbridge/death.message/config/message.json')).get("message")
-let mapData = (new JsonConfigFile('plugins/sparkbridge/death.message/config/map.json')).get("map")
 let config = new JsonConfigFile('plugins/sparkbridge/death.message/config/config.json')
+let entityData = (new JsonConfigFile(`plugins/sparkbridge/death.message/config/entity${config.get('edition')}.json`)).get("entity")
+let messageData = (new JsonConfigFile(`plugins/sparkbridge/death.message/config/message${config.get('edition')}.json`)).get("message")
+let mapData = (new JsonConfigFile('plugins/sparkbridge/death.message/config/map.json')).get("map")
 
 function onStart(adapter){
     mc.listen('onMobDie', (mob, source, cause) => {
@@ -29,15 +29,13 @@ function stringFormat(str, args) {
 function deathEventHandler(mob, source, cause, entity, message, map) {
     let args = []
     let msg = ''
-    if(!mob.isPlayer())
-        return false
-    args.push(mob.name)
-    if(source?.isPlayer()) {
-        args.push(source.realName)
-    } else if(source?.type) {
-        args.push(entity[source.type] || source.name)
+    if(!mob.isPlayer()) { return false }
+    msg = message[map.exception?.[source.type]?.[cause]]
+    if(!msg) {
+        msg = message[map[cause]] || `%s死了 %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
     }
-    msg = message[map[cause]] || `%s死了 %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
+    args.push(mob.name)
+    args.push(entity[source?.type] || source.name)
     return stringFormat(msg, args)
 }
 
