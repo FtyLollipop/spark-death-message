@@ -1,4 +1,4 @@
-# death.message 死亡消息转发
+# death.message 死亡消息转发到Q群
 
 适用于SparkBridge的死亡消息转发插件
 
