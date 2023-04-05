@@ -1,0 +1,43 @@
+{
+    "map": {
+        "exception": {
+            "minecraft:ghast": {"3": "death.attack.mob"},
+            "minecraft:llama": {"3": "death.attack.spit"},
+            "minecraft:warden": { "31": "death.attack.sonicBoom.player"},
+            "minecraft:witch": {"14": "death.attack.indirectMagic"}
+        },
+        "-1": "death.attack.generic",
+        "0": "death.attack.generic",
+        "1": "death.attack.cactus",
+        "2": "death.attack.mob",
+        "3": "death.attack.arrow",
+        "4": "death.attack.inWall",
+        "5": "death.fell.accident.generic",
+        "6": "death.attack.inFire",
+        "7": "death.attack.onFire",
+        "8": "death.attack.lava",
+        "9": "death.attack.drown",
+        "10": "death.attack.explosion",
+        "11": "death.attack.explosion.player",
+        "12": "death.attack.outOfWorld",
+        "13": "death.attack.generic",
+        "14": "death.attack.magic",
+        "15": "death.attack.wither",
+        "16": "death.attack.starve",
+        "17": "death.attack.anvil",
+        "18": "death.attack.thorns",
+        "19": "death.attack.fallingBlock",
+        "20": "death.attack.generic",
+        "21": "death.attack.flyIntoWall",
+        "22": "death.attack.magma",
+        "23": "death.attack.fireworks",
+        "24": "death.attack.lightningBolt",
+        "25": "death.attack.generic",
+        "26": "death.attack.generic",
+        "27": "death.attack.freeze",
+        "28": "death.attack.stalactite",
+        "29": "death.attack.stalagmite",
+        "30": "death.attack.generic",
+        "31": "death.attack.sonicBoom"
+    }
+}
