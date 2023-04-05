@@ -30,12 +30,15 @@ function deathEventHandler(mob, source, cause, entity, message, map) {
     let args = []
     let msg = ''
     if(!mob.isPlayer()) { return false }
-    msg = message[map.exception?.[source.type]?.[cause]]
+    msg = message[map.exception?.[source?.type]?.[cause]]
     if(!msg) {
         msg = message[map[cause]] || `%s死了 %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
     }
     args.push(mob.name)
-    args.push(entity[source?.type] || source.name)
+    console.log(source)
+    if(source) {
+        args.push(entity[source?.type] || source.name)
+    }
     return stringFormat(msg, args)
 }
 
