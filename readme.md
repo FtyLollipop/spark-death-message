@@ -14,7 +14,7 @@
 
 配置文件为`death.message\config\config.json`
 
-- `groups`：要转发的群组，多个群组用英文逗号隔开，例如`groups: [12345678,12345679]`。
+- `groups`：要转发的群组，多个群组用英文逗号隔开，例如`"groups": [12345678,12345679]`。
 
 - `edition`：死亡消息内容翻译遵循的版本，`"Java"`为Java版翻译，`"Bedrock"`为基岩版翻译。
 
