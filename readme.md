@@ -78,7 +78,7 @@
 
    ```javascript
    function 机器人主函数() {
-           mc.listen('onMobDie', (mob, source, cause) => {
+       mc.listen('onMobDie', (mob, source, cause) => {
            let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
            if(!msg) return
            机器人发送消息(msg)
