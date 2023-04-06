@@ -67,9 +67,9 @@
    使用示例伪代码：
 
    ```javascript
-   let entityData = 读取文件()['entity']
-   let messageData = 读取文件()['message']
-   let mapData = 读取文件()['map']
+   let entityData = 读取文件('entityJava.json')['entity']
+   let messageData = 读取文件('messageJava.json')['message']
+   let mapData = 读取文件('map.json')['map']
    function 机器人主函数() {
            mc.listen('onMobDie', (mob, source, cause) => {
            let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
