@@ -27,16 +27,16 @@ function stringFormat(str, args) {
 }
 
 function deathEventHandler(mob, source, cause, entity, message, map) {
-    let msg = ''
+    let msg = null
     let args = []
-    if(!mob.isPlayer()) { return false }
-    msg = message[map.exception?.[source?.type]?.[cause]]
+    if(!mob.isPlayer()) { return null }
+    msg = message?.[map.exception?.[source?.type]?.[cause]] ?? null
     if(!msg) {
-        msg = message?.[map?.[cause]] || `%s${message['death.attack.generic']} %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
+        msg = message?.[map?.[cause]] ?? `%s${message['death.attack.generic']} %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
     }
     args.push(mob.name)
     if(source) {
-        args.push(entity?.[source?.type] || source?.name)
+        args.push(entity?.[source?.type] ?? source?.name)
     }
     return stringFormat(msg, args)
 }
