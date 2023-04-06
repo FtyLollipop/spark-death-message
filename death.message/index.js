@@ -16,7 +16,7 @@ function info(){
         name : 'death.message',
         desc : '死亡消息转发到群聊',
         author : 'FtyLollipop',
-        version : [0,0,2]
+        version : [0,0,3]
     }
 }
 
