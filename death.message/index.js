@@ -1,7 +1,7 @@
-let config = new JsonConfigFile('plugins/sparkbridge/death.message/config/config.json', {'groups': [], 'edition': 'Java'})
-let entityData = (new JsonConfigFile(`plugins/sparkbridge/death.message/config/entity${config.get('edition')}.json`)).get("entity")
-let messageData = (new JsonConfigFile(`plugins/sparkbridge/death.message/config/message${config.get('edition')}.json`)).get("message")
-let mapData = (new JsonConfigFile('plugins/sparkbridge/death.message/config/map.json')).get("map")
+let config = new JsonConfigFile('plugins/sparkbridge/death.message/config.json', {'groups': [], 'edition': 'java'})
+let entityData = (new JsonConfigFile(`plugins/sparkbridge/death.message/resources/entity.json`)).get(config.get('edition'))
+let messageData = (new JsonConfigFile(`plugins/sparkbridge/death.message/resources/message.json`)).get(config.get('edition'))
+let mapData = (new JsonConfigFile('plugins/sparkbridge/death.message/resources/map.json')).get("map")
 
 function onStart(adapter){
     mc.listen('onMobDie', (mob, source, cause) => {
@@ -16,7 +16,7 @@ function info(){
         name : 'death.message',
         desc : '死亡消息转发到群聊',
         author : 'FtyLollipop',
-        version : [0,0,1]
+        version : [0,0,2]
     }
 }
 

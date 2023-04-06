@@ -15,15 +15,13 @@
    ```
    plugins\nodejs\sparkbridge\plugins\death.message
    ├── index.js                 // 插件主程序
-   └── config
-       ├── config.json          // 配置文件
-       ├── entityJava.json      // 实体数据-Java版翻译
-       ├── entityBedrock.json   // 实体数据-基岩版翻译
-       ├── messageJava.json     // 死亡消息数据-Java版翻译
-       ├── messageBedrock.json  // 死亡消息数据-基岩版翻译
+   ├── config.json              // 插件主程序
+   └── resources
+       ├── entity.json          // 实体数据
+       ├── message.json         // 死亡消息数据
        └── map.json             // 死亡消息映射数据
    ```
-
+   
    
 
 ## 配置
@@ -32,11 +30,11 @@
 
 - `groups`：要转发的群组，多个群组用英文逗号隔开，例如`"groups": [12345678,12345679]`。
 
-- `edition`：死亡消息内容翻译遵循的版本，`"Java"`为Java版翻译，`"Bedrock"`为基岩版翻译。
+- `edition`：死亡消息内容翻译遵循的版本，`"java"`为Java版翻译，`"bedrock"`为基岩版翻译。
 
 ## 已知问题
 
-由于LiteLoaderBDS提供的API无法监听实体以外的伤害来源，所以无法区分死于仙人掌的伤害或死于甜浆果丛的伤害，故两者死亡信息统一使用死于仙人掌伤害的`[玩家名]被戳死了`，如有需要，也可以更改`death.message\config\messageJava.json`或`death.message\config\messageBedrock.json`来自定义这条信息的显示内容。
+由于LiteLoaderBDS提供的API无法监听实体以外的伤害来源，所以无法区分死于仙人掌的伤害或死于甜浆果丛的伤害，故两者死亡信息统一使用死于仙人掌伤害的`[玩家名]被戳死了`，如有需要，也可以更改`death.message\resources\message.json`来自定义这条信息的显示内容。
 
 有特殊死亡情况可能未手动覆盖到，请在GitHub提交issue。
 
@@ -49,8 +47,8 @@
    示例伪代码：
 
    ```javascript
-   let entityData = 读取文件('entityJava.json')['entity']
-   let messageData = 读取文件('messageJava.json')['message']
+   let entityData = 读取文件('entity.json')['java']
+   let messageData = 读取文件('message.json')['java']
    let mapData = 读取文件('map.json')['map']
    ```
 
