@@ -44,7 +44,17 @@
 
 本插件可以方便地移植到其他群服互通机器人，您只需要：
 
-1. 复制数据配置文件导入部分，注意修改文件路径。
+1. 导入数据配置文件，注意文件路径。
+
+   示例伪代码：
+
+   ```javascript
+   let entityData = 读取文件('entityJava.json')['entity']
+   let messageData = 读取文件('messageJava.json')['message']
+   let mapData = 读取文件('map.json')['map']
+   ```
+
+   本插件使用LiteLoaderBDS提供的配置文件API`JsonConfigFile`，您也可以直接复制修改路径后使用。
 
 2. 复制`stringFormat`函数和`deathEventHandler`函数。
 
@@ -67,9 +77,6 @@
    使用示例伪代码：
 
    ```javascript
-   let entityData = 读取文件('entityJava.json')['entity']
-   let messageData = 读取文件('messageJava.json')['message']
-   let mapData = 读取文件('map.json')['map']
    function 机器人主函数() {
            mc.listen('onMobDie', (mob, source, cause) => {
            let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
