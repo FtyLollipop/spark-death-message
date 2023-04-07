@@ -4,10 +4,14 @@ let messageData = (new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.
 let mapData = (new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.message/resources/map.json')).get("map")
 
 function onStart(adapter){
+    let groups = config.get('groups')
+    logger.setConsole(config.get('islogprt'))
+    logger.setFile(config.get('islogfile') ? 'logs/death.message.log' : null)
     mc.listen('onMobDie', (mob, source, cause) => {
         let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
         if(!msg) return
-        config.get('groups').forEach(g => adapter.sendGroupMsg(g, msg))
+        logger.log(msg)
+        groups.forEach(g => adapter.sendGroupMsg(g, msg))
     })
 }
 
@@ -16,7 +20,7 @@ function info(){
         name : 'death.message',
         desc : '死亡消息转发到群聊',
         author : 'FtyLollipop',
-        version : [0,0,3]
+        version : [0,0,4]
     }
 }
 

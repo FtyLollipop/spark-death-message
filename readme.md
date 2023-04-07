@@ -10,7 +10,7 @@
 
 2. [下载death.message.zip](https://github.com/FtyLollipop/spark-death-message/releases)
 
-3. 解压`death.message`文件夹到`plugins\nodejs\sparkbridge\plugins`目录中，注意不要嵌套，安装后的目录结构应该如下：
+3. 解压`death.message`文件夹到`BDS根目录\plugins\nodejs\sparkbridge\plugins`目录中，注意不要嵌套，安装后的目录结构应该如下：
 
    ```
    plugins\nodejs\sparkbridge\plugins\death.message
@@ -29,8 +29,9 @@
 配置文件为`config.json`
 
 - `groups`：要转发的群组，多个群组用英文逗号隔开，例如`"groups": [12345678,12345679]`。
-
-- `edition`：死亡消息内容翻译遵循的版本，`"java"`为Java版翻译，`"bedrock"`为基岩版翻译。
+- `edition`：死亡消息内容**翻译**遵循的版本，`"java"`为Java版翻译，`"bedrock"`为基岩版翻译。
+- `islogprt`: 死亡消息是否输出到控制台。
+- `islogfile`: 死亡消息是否输出到日志文件。日志文件路径：`BDS根目录\logs\death.message.log`。
 
 ## 已知问题
 
@@ -42,9 +43,11 @@
 
 ⚠️警告：本插件目前尚于测试阶段，可能会频繁更新甚至更改文件夹、配置文件结构，如需稳定版本敬请等待v1.0.0版本。
 
-本插件可以方便地移植到其他群服互通机器人，您只需要：
+本插件可以方便地移植到其他群服互通机器人（Javascript，其他语言需要自行修改函数），您只需要：
 
-1. 导入数据配置文件，注意文件路径。
+1. 下载最新的源代码。
+
+2. 导入数据配置文件，注意文件路径。
 
    示例伪代码：
 
@@ -56,9 +59,9 @@
 
    本插件使用LiteLoaderBDS提供的配置文件API`JsonConfigFile`，您也可以直接复制修改路径后使用。
 
-2. 复制`stringFormat`函数和`deathEventHandler`函数。
+3. 复制`stringFormat`函数和`deathEventHandler`函数。
 
-3. 在您自己的插件中使用LiteLoaderBDS提供的事件监听API`mc.listen`监听`onMobDie`事件，并在回调函数中调用`deathEventHandler`函数，用法为：
+4. 在您自己的插件中使用LiteLoaderBDS提供的事件监听API`mc.listen`监听`onMobDie`事件，并在回调函数中调用`deathEventHandler`函数，用法为：
 
    `deathEventHandler(mob, source, cause, entity, message, map)`
 
@@ -72,7 +75,7 @@
    - 返回值: 死亡消息文本，若死亡的实体不是玩家则为`null`
    - 返回值类型: `String`
 
-4. 若`deathEventHandler`函数的返回值不为`null`，则将返回值使用机器人发送。
+5. 若`deathEventHandler`函数的返回值不为`null`，则将返回值使用机器人发送。
 
    使用示例伪代码：
 
@@ -80,8 +83,7 @@
    function 机器人主函数() {
        mc.listen('onMobDie', (mob, source, cause) => {
            let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
-           if(!msg) return
-           机器人发送消息(msg)
+           if(msg) 机器人发送消息(msg)
        })
    }
    ```
@@ -89,4 +91,3 @@
 ## 协议
 
 本插件按照[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-Hans)协议发布。
-

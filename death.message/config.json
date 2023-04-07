@@ -1,4 +1,6 @@
 {
     "groups": [],
-    "edition": "java"
+    "edition": "bedrock",
+    "islogfile": true,
+    "islogcmd": true
 }
