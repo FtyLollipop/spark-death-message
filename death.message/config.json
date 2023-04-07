@@ -1,6 +1,6 @@
 {
     "groups": [],
     "edition": "bedrock",
-    "islogfile": true,
-    "islogcmd": true
+    "islogprt": true,
+    "islogfile": true
 }

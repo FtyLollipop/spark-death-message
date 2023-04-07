@@ -28,10 +28,10 @@
 
 配置文件为`config.json`
 
-- `groups`：要转发的群组，多个群组用英文逗号隔开，例如`"groups": [12345678,12345679]`。
+- `groups`：要转发的群号，多个群号用英文逗号隔开，例如`"groups": [12345678,12345679]`。
 - `edition`：死亡消息内容**翻译**遵循的版本，`"java"`为Java版翻译，`"bedrock"`为基岩版翻译。
-- `islogprt`: 死亡消息是否输出到控制台。
-- `islogfile`: 死亡消息是否输出到日志文件。日志文件路径：`BDS根目录\logs\death.message.log`。
+- `islogprt`: 死亡消息是否输出到控制台。`true`为是，`false`为否。
+- `islogfile`: 死亡消息是否输出到日志文件。`true`为是，`false`为否。日志文件路径：`BDS根目录\logs\death.message.log`。
 
 ## 已知问题
 
