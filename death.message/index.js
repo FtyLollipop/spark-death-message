@@ -10,7 +10,7 @@ function onStart(adapter){
     mc.listen('onMobDie', (mob, source, cause) => {
         let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
         if(!msg) return
-        logger.log(msg)
+        logger.info(msg)
         groups.forEach(g => adapter.sendGroupMsg(g, msg))
     })
 }
