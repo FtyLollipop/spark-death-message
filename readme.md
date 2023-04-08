@@ -59,9 +59,11 @@
 
    本插件使用LiteLoaderBDS提供的配置文件API`JsonConfigFile`，您也可以直接复制修改路径后使用。
 
-3. 复制`stringFormat`函数和`deathEventHandler`函数。
+3. 复制`let lastDamageItemName = {}`、`stringFormat`函数、`deathEventHandler`函数和`hurtEventHandler`函数。
 
-4. 在您自己的插件中使用LiteLoaderBDS提供的事件监听API`mc.listen`监听`onMobDie`事件，并在回调函数中调用`deathEventHandler`函数，用法为：
+4. 在您自己的插件中使用LiteLoaderBDS提供的事件监听API`mc.listen`监听`onMobDie`事件，并将`hurtEventHandler`函数直接作为其回调函数。
+
+5. 另外监听`onMobDie`事件，并在回调函数中调用`deathEventHandler`函数，用法为：
 
    `deathEventHandler(mob, source, cause, entity, message, map)`
 
@@ -75,12 +77,13 @@
    - 返回值: 死亡消息文本，若死亡的实体不是玩家则为`null`
    - 返回值类型: `String`
 
-5. 若`deathEventHandler`函数的返回值不为`null`，则将返回值使用机器人发送。
+6. 若`deathEventHandler`函数的返回值不为`null`，则将返回值使用机器人发送。
 
    使用示例伪代码：
 
    ```javascript
    function 机器人主函数() {
+       mc.listen('onMobHurt', hurtEventHandler)
        mc.listen('onMobDie', (mob, source, cause) => {
            let msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData)
            if(msg) 机器人发送消息(msg)

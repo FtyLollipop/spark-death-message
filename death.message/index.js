@@ -25,6 +25,8 @@ function info(){
     }
 }
 
+// 若需移植请完整复制以下部分
+
 let lastDamageItemName = {}
 
 function stringFormat(str, args) {
@@ -84,5 +86,7 @@ function hurtEventHandler(mob, source, damage, cause) {
         delete lastDamageItemName[mob.name]
     }
 }
+
+// 若需移植请完整复制以上部分
 
 module.exports = {onStart, info}
