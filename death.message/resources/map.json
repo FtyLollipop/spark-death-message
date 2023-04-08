@@ -45,6 +45,7 @@
         "28": "death.attack.stalactite",
         "29": "death.attack.stalagmite",
         "30": "death.attack.generic",
-        "31": "death.attack.sonicBoom"
+        "31": "death.attack.sonicBoom",
+        "32": "death.attack.generic"
     }
 }
