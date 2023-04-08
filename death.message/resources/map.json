@@ -7,6 +7,7 @@
             "minecraft:evocation_illager": {"14": "death.attack.indirectMagic"},
             "minecraft:ghast": {"3": "death.attack.mob"},
             "minecraft:llama": {"3": "death.attack.spit"},
+            "minecraft:player": {"2": "death.attack.player", "14": "death.attack.indirectMagic"},
             "minecraft:shulker": {"3": "death.attack.bullet"},
             "minecraft:small_fireball": {"3": "death.attack.player"},
             "minecraft:warden": { "31": "death.attack.sonicBoom.player"},
