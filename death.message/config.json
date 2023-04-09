@@ -1,6 +1,14 @@
 {
     "groups": [],
     "edition": "bedrock",
+    "enabledentity": {
+        "minecraft:cat": true,
+        "minecraft:donkey": true,
+        "minecraft:horse": true,
+        "minecraft:mule": true,
+        "minecraft:player": true,
+        "minecraft:worf": true
+    },
     "islogprt": true,
     "islogfile": true
 }
