@@ -7,8 +7,10 @@
         "minecraft:horse": true,
         "minecraft:mule": true,
         "minecraft:player": true,
-        "minecraft:worf": true
+        "minecraft:wolf": true
     },
-    "islogprt": true,
-    "islogfile": true
+    "enableMobCustonName": true,
+    "enableItemCustonName": true,
+    "isLogPrt": true,
+    "isLogFile": true
 }
