@@ -15,7 +15,7 @@
    ```
    plugins\nodejs\sparkbridge\plugins\death.message
    ├── index.js                 // 插件主程序
-   ├── config.json              // 插件主程序
+   ├── config.json              // 配置文件
    └── resources
        ├── entity.json          // 实体数据
        ├── message.json         // 死亡消息数据
