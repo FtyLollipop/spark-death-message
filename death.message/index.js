@@ -2,17 +2,11 @@ const config = new JsonConfigFile('plugins/sparkbridge/death.message/config.json
 const entityData = (new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.message/resources/entity.json')).get(config.get('edition'))
 const messageData = (new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.message/resources/message.json')).get(config.get('edition'))
 const mapData = (new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.message/resources/map.json')).get("map")
-const defaultEntityEmoji = (new JsonConfigFile('plugins/death.message/resources/emoji.json')).get("defaultEntity")
-const entityEmoji = (new JsonConfigFile('plugins/death.message/resources/emoji.json')).get("entity")
-const deathMessageEmoji = (new JsonConfigFile('plugins/death.message/resources/emoji.json')).get("deathMessage")
-const defaultEnabledEntity = {
-    "minecraft:cat": true,
-    "minecraft:donkey": true,
-    "minecraft:horse": true,
-    "minecraft:mule": true,
-    "minecraft:player": true,
-    "minecraft:wolf": true
-}
+const emoji = new JsonConfigFile('plugins/nodejs/sparkbridge/plugins/death.message/resources/emoji.json')
+const defaultEntityEmoji = emoji.get("defaultEntity")
+const entityEmoji = emoji.get("entity")
+const deathMessageEmoji = emoji.get("deathMessage")
+
 const handlerConfigs = {
     enabledEntity: config.get('enabledEntity'),
     enableMobCustomName: config.get('enableMobCustomName'),
