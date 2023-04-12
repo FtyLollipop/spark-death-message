@@ -96,8 +96,8 @@ function deathEventHandler(mob, source, cause, entity, message, map, config) {
     if (cause === 1 && lastDamageCause[mob.uniqueId]?.['position']) {
         let pos = lastDamageCause[mob.uniqueId]?.['position']
         delete lastDamageCause[mob.uniqueId]
-        for (let x = -1; x <= 1; x++) {
-            for (let y = -2; y <= 1; y++) {
+        for (let y = -1; y <= 2; y++) {
+            for (let x = -1; x <= 1; x++) {
                 for (let z = -1; z <= 1; z++) {
                     const block = mc.getBlock(pos.x + x, pos.y + y, pos.z + z, pos.dimid)?.type
                     if (block === 'minecraft:cactus') {
