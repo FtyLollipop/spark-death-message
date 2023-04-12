@@ -21,7 +21,7 @@ const handlerConfigs = {
     emojiSeparator: config.get('emojiSeparator')
 }
 
-function onStart(adapter){
+function onStart(adapter) {
     const groups = config.get('groups')
     logger.setConsole(config.get('isLogPrt'))
     logger.setFile(config.get('isLogFile') ? 'logs/death.message.log' : null)
@@ -30,18 +30,18 @@ function onStart(adapter){
     })
     mc.listen('onMobDie', (mob, source, cause) => {
         const msg = deathEventHandler(mob, source, cause, entityData, messageData, mapData, handlerConfigs)
-        if(!msg) return
-        logger.info(msg)
-        groups.forEach(g => adapter.sendGroupMsg(g, msg))
+        if (!msg) { return }
+        logger.info(msg[2])
+        groups.forEach(g => adapter.sendGroupMsg(g, msg.join('')))
     })
 }
 
-function info(){
+function info() {
     return {
-        name : 'death.message',
-        desc : '死亡消息转发到群聊',
-        author : 'FtyLollipop',
-        version : [0,1,0]
+        name: 'death.message',
+        desc: '死亡消息转发到群聊',
+        author: 'FtyLollipop',
+        version: [0, 3, 0]
     }
 }
 
@@ -51,7 +51,7 @@ let lastDamageCause = {}
 
 function stringFormat(str, args) {
     const regex = /%s/
-    const _r=(p,c) => p.replace(regex,c)
+    const _r = (p, c) => p.replace(regex, c)
     return args.reduce(_r, str)
 }
 
@@ -60,7 +60,7 @@ function isTamed(mob) {
 }
 
 function deathEventHandler(mob, source, cause, entity, message, map, config) {
-    if(mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/) === 'false') { return }
+    if (mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/) === 'false') { return }
     const enabledEntity = config?.enabledEntity ?? {
         "minecraft:cat": true,
         "minecraft:donkey": true,
@@ -78,19 +78,19 @@ function deathEventHandler(mob, source, cause, entity, message, map, config) {
 
     let msg = null
     let args = []
-    let emoji = ['','','', emojiSeparator]
+    let emoji = ['', '', '']
 
-    if(!enabledEntity[mob.type] || (!mob.isPlayer() && !isTamed(mob))) { return null }
+    if (!enabledEntity[mob.type] || (!mob.isPlayer() && !isTamed(mob))) { return null }
 
-    if(enableMobCustomName) {
+    if (enableMobCustomName) {
         args.push(getCustomName(mob) ?? entity?.[mob.type] ?? mob.name)
     } else {
         args.push(entity?.[mob.type] ?? mob.type)
     }
     emoji[2] = entityEmoji[mob.type] ?? defaultEntityEmoji
 
-    if(source) {
-        if(enableMobCustomName) {
+    if (source) {
+        if (enableMobCustomName) {
             args.push(getCustomName(source) ?? entity?.[source.type] ?? source.name)
         } else {
             args.push(entity?.[source.type] ?? getCustomName(source) ? source.type : source.name)
@@ -99,14 +99,14 @@ function deathEventHandler(mob, source, cause, entity, message, map, config) {
         emoji[1] = deathMessageEmoji.exception?.[source.type]?.[cause]
     }
 
-    if(cause === 1 && lastDamageCause[mob.uniqueId]?.['position']) {
+    if (cause === 1 && lastDamageCause[mob.uniqueId]?.['position']) {
         let pos = lastDamageCause[mob.uniqueId]?.['position']
         delete lastDamageCause[mob.uniqueId]
-        for(let x = -1; x <= 1; x++) {
-            for(let y = -2; y <= 1; y++) {
-                for(let z = -1; z <= 1; z++) {
+        for (let x = -1; x <= 1; x++) {
+            for (let y = -2; y <= 1; y++) {
+                for (let z = -1; z <= 1; z++) {
                     const block = mc.getBlock(pos.x + x, pos.y + y, pos.z + z, pos.dimid)?.type
-                    if(block === 'minecraft:cactus') {
+                    if (block === 'minecraft:cactus') {
                         msg = message[map[cause]]
                         emoji[1] = deathMessageEmoji[cause]
                         break
@@ -118,7 +118,7 @@ function deathEventHandler(mob, source, cause, entity, message, map, config) {
                 }
             }
         }
-    } else if(cause === 2 && lastDamageCause[mob.uniqueId]?.['itemName']){
+    } else if (cause === 2 && lastDamageCause[mob.uniqueId]?.['itemName']) {
         msg = message['death.attack.player.item']
         args.push(lastDamageCause[mob.uniqueId]?.['itemName'])
         delete lastDamageCause[mob.uniqueId]
@@ -126,14 +126,14 @@ function deathEventHandler(mob, source, cause, entity, message, map, config) {
         msg = message?.[map.exception?.[source?.type]?.[cause]] ?? null
     }
 
-    if(!msg) {
+    if (!msg) {
         msg = message?.[map?.[cause]] ?? `${message['death.attack.generic']} %插件消息数据需要更新 source:${args[0]} cause:${cause}%`
     }
-    if(!emoji[1]) {
+    if (!emoji[1]) {
         emoji[1] = deathMessageEmoji[cause] ?? deathMessageEmoji['0']
     }
 
-    return (enableEmoji ? emoji.join('') : '') + stringFormat(msg, args)
+    return [enableEmoji ? emoji.join('') : '', enableEmoji ? emojiSeparator : '', stringFormat(msg, args)]
 }
 
 function hurtEventHandler(mob, source, cause, config) {
@@ -147,20 +147,20 @@ function hurtEventHandler(mob, source, cause, config) {
     }
     const enableItemCustomName = config?.enableItemCustomName ?? true
 
-    if(!enabledEntity[mob.type] || (!mob.isPlayer() && !isTamed(mob))) { return }
+    if (!enabledEntity[mob.type] || (!mob.isPlayer() && !isTamed(mob))) { return }
     delete lastDamageCause[mob.uniqueId]
-    if(source?.isPlayer() && cause === 2) {
+    if (source?.isPlayer() && cause === 2) {
         const item = mc.getPlayer(source.uniqueId).getHand()
         const itemNameNbt = item?.getNbt()?.getTag('tag')?.getTag('display')?.getTag('Name')
-        if(itemNameNbt) {
-            lastDamageCause[mob.uniqueId] = {'itemName' : enableItemCustomName ? itemNameNbt.toString() : mc.newItem(item.type, 1).name}
+        if (itemNameNbt) {
+            lastDamageCause[mob.uniqueId] = { 'itemName': enableItemCustomName ? itemNameNbt.toString() : mc.newItem(item.type, 1).name }
         }
-    } else if(cause === 1) {
+    } else if (cause === 1) {
         let pos = mob.blockPos
-        lastDamageCause[mob.uniqueId] = {'position' : {x: pos.x, y: pos.y, z: pos.z, dimid: pos.dimid}}
+        lastDamageCause[mob.uniqueId] = { 'position': { x: pos.x, y: pos.y, z: pos.z, dimid: pos.dimid } }
     }
 }
 
 // 若需移植请完整复制以上部分
 
-module.exports = {onStart, info}
+module.exports = { onStart, info }
