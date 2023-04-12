@@ -54,7 +54,7 @@ function isTamed(mob) {
 }
 
 function deathEventHandler(mob, source, cause, entity, message, map, config) {
-    if (mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/) === 'false') { return }
+    if (mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/).toString() === 'false') { return }
     const enabledEntity = config?.enabledEntity ?? {
         "minecraft:cat": true,
         "minecraft:donkey": true,
