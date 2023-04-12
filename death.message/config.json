@@ -11,6 +11,7 @@
     },
     "enableMobCustomName": true,
     "enableItemCustomName": true,
+    "enableEmoji": false,
     "isLogPrt": true,
     "isLogFile": true
 }

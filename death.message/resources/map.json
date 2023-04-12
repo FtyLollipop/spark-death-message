@@ -1,9 +1,10 @@
 {
     "map": {
         "exception": {
-            "minecraft:arrow": {"3": "death.attack.player"},
+            "minecraft:arrow": {"3": "death.attack.mob"},
             "minecraft:blaze": {"3": "death.attack.fireball"},
             "minecraft:drowned": {"3": "death.attack.trident"},
+            "minecraft:ender_dragon": {"14": "death.attack.indirectMagic"},
             "minecraft:evocation_illager": {"14": "death.attack.indirectMagic"},
             "minecraft:ghast": {"3": "death.attack.mob"},
             "minecraft:llama": {"3": "death.attack.spit"},
@@ -11,7 +12,8 @@
             "minecraft:shulker": {"3": "death.attack.bullet"},
             "minecraft:small_fireball": {"3": "death.attack.mob"},
             "minecraft:warden": { "31": "death.attack.sonicBoom.player"},
-            "minecraft:witch": {"14": "death.attack.indirectMagic"}
+            "minecraft:witch": {"14": "death.attack.indirectMagic"},
+            "minecraft:sweet_berry_bush": {"1": "death.attack.sweetBerry"}
         },
         "-1": "death.attack.generic",
         "0": "death.attack.generic",
