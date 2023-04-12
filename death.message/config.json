@@ -12,6 +12,7 @@
     "enableMobCustomName": true,
     "enableItemCustomName": true,
     "enableEmoji": false,
+    "emojiSeparator": "  ",
     "isLogPrt": true,
     "isLogFile": true
 }
