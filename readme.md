@@ -33,7 +33,7 @@
 - `enabledEntity`：启用死亡消息的生物列表，在对应生物的命名空间ID后设定是否启用。`true`为是，`false`为否。
 - `enableMobCustomName`：是否启用自定义生物名称。`true`为是，`false`为否。启用时，如果被驯服的生物死亡，拥有使用命名牌自定义的名称则优先使用名称，否则不使用。
 - `enableItemCustomName`：是否启用自定义物品名称。`true`为是，`false`为否。启用时，如果玩家使用了用铁砧重命名后的物品击杀了生物或其他玩家，则优先使用重命名后的名称，否则不使用。
-- `enableEmoji`：是否启用emoji，`true`为是，`false`为否。启用时，每一条死亡信息开头都会带上与死亡消息内容有关联的2-3个emoji表情。
+- `enableEmoji`：是否启用emoji，`true`为是，`false`为否。启用时，每一条死亡信息开头都会带上与死亡消息内容有关联的2-3个emoji表情（emoji部分不会输出到控制台和日志文件）。
 - `emojiSeparator`：emoji和死亡消息之间的分隔符。
 - `isLogPrt`: 死亡消息是否输出到控制台。`true`为是，`false`为否。
 - `isLogFile`: 死亡消息是否输出到日志文件。`true`为是，`false`为否。日志文件路径：`BDS根目录\logs\death.message.log`。
