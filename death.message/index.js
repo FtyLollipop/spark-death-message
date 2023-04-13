@@ -35,7 +35,7 @@ function info() {
         name: 'death.message',
         desc: '死亡消息转发到群聊',
         author: 'FtyLollipop',
-        version: [0, 3, 0]
+        version: [0, 4, 0]
     }
 }
 
@@ -54,7 +54,7 @@ function isTamed(mob) {
 }
 
 function deathEventHandler(mob, source, cause, entity, message, map, config) {
-    if (mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/).toString() === 'false') { return }
+    if (mc.runcmdEx('gamerule showdeathmessages').output.match(/true|false/).toString() === 'false') { return null }
     const enabledEntity = config?.enabledEntity ?? {
         "minecraft:cat": true,
         "minecraft:donkey": true,
